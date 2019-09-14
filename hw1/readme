@@ -1,0 +1,12 @@
+environment： pietty
+
+command： make –f makefile 
+./hw1.exe 
+
+requirement: Class ZipCode
+– Constructor A: input as a string
+– Constructor B: input as an integer
+– Method A: return as a string
+– Method B: return as an integer
+– Attribute A: store the zip code as a string.
+(and only store the zip code in this format)
