@@ -1,0 +1,9 @@
+environment： pietty
+
+command： make –f makefile 
+./hw2.exe
+
+requirement: Class Rational
+– Constructor A: two arguments that can be used to set the member variables of an object to any legitimate values
+– Constructor B: a single parameter of type int
+– Constructor C: a default constructor
