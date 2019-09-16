@@ -1,0 +1,37 @@
+environment：
+pietty
+
+command：
+F74012099@C-2012-2:~/project1$ make
+make: `main' is up to date.
+F74012099@C-2012-2:~/project1$ ./main
+
+requirement:
+1. Develop an nondeterministic and interactive game.
+2. Include at least two classes (in separate files).
+3. Draw UML class diagram in your report.
+4. Write a Makefile to compile your program.
+5. Display time (in seconds) on screen.
+6. At least 3 levels of difficulty.
+7. Output the map when the game is over.
+8. Simply move the cursor on screen. DO NOT repaint your screen!!!
+
+How to Play?
+• Uncover a mine, and the game ends.
+• Uncover an empty square, and you keep playing.
+• Uncover a number, and it tells you how many mines lay hidden in the eight surrounding squares
+—information you use to deduce which nearby squares are safe to click.
+
+ncurses
+• ncurses is a programming library providing an API, allowing the programmer to write text user interfaces in a terminal-independent manner.
+• In cygwin, remember to install package Libs->libncurses-devel
+
+References
+• Minesweeper Wiki
+http://www.minesweeper.info/wiki/
+• ncurses HOWTO
+http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/helloworld.html
+• Writing Programs with NCURSES
+http://invisible-island.net/ncurses/ncurses-intro.html
+• TRIBUTE TO TEXT-MODE GAMES
+http://www.textmodegames.com/
