@@ -1,0 +1,36 @@
+environment：
+cygwin (UNIX)
+
+command：
+F74012099@C-2012-2:~/project2$ make
+make: `QQ' is up to date.
+F74012099@C-2012-2:~/project1$ ./QQ
+
+Gaming Rule
+• A random sequence of tetrominoes fall down the playing field (a rectangular vertical shaft, called the "well" or "matrix").
+• The objective of the game is to manipulate these tetrominoes, by moving each one sideways and rotating it by 90 degree units, 
+with the aim of creating a horizontal line of blocks without gaps.
+• When such a line is created, it disappears, and any block above the deleted line will fall.
+• The game ends when the stack of tetrominoes reaches the top of the playing field and no new tetrominoes are able to enter.
+
+Basic Requirements:
+• Develop an interactive tetris game
+You can use ncurses library for a text-based Unix environment or other libraries for various GUI environments
+• Use inheritance to design your tetrominoes
+• Use operator overloading for operations
+• Use new / delete to dynamically allocate / release your tetrominoes objects
+
+Detailed Requirements:
+• Battle Mode!
+• Moving cursor. (DO NOT repaint your screen)
+• Display elapsed time and score on the screen.
+• Tetrominos can be accelerated to fall down.
+• At least 7 kinds of tetrominos in your game.
+
+References
+• ncurses colors
+http://resin.csoft.net/cgibin/man.cgi?section=3&topic=init_pair
+• ncurses HOWTO
+http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/helloworld.html
+• Writing Programs with NCURSES
+http://invisible-island.net/ncurses/ncurses-intro.html
