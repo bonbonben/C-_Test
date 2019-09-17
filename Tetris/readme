@@ -29,7 +29,7 @@ Detailed Requirements:
 
 References
 • ncurses colors
-http://resin.csoft.net/cgibin/man.cgi?section=3&topic=init_pair
+http://resin.csoft.net/cgi-bin/man.cgi?section=3&topic=init_pair
 • ncurses HOWTO
 http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/helloworld.html
 • Writing Programs with NCURSES
