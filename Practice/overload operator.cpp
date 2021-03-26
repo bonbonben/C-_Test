@@ -4,8 +4,8 @@
 using namespace std;
 
 class CVector{
-  public:
-    int x,y;
+	public:
+		int x,y;
 		CVector () {x=0;y=0;};
 		// 函數名稱 CVector (constructor)
 		CVector (int,int);
