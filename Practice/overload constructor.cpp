@@ -2,18 +2,18 @@
 using namespace std;
 
 class rectangle{
-		private:
-			double x,y;
-		public:
-			// constructor
-			rectangle(double,double);
-			// overload
-			rectangle();
+	private:
+		double x,y;
+	public:
+		// constructor
+		rectangle(double,double);
+		// overload
+		rectangle();
 			
-			double area(void){
-				return (x * y);	
-			}
-	};
+		double area(void){
+			return (x * y);	
+		}
+};
 
 rectangle::rectangle(double a,double b){
 	x=a;
