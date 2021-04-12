@@ -45,6 +45,25 @@ typedef struct
 
 using namespace std;
 
+uint64_t swap_8bytes(uint64_t &value)
+{
+  value = (value << 56) |
+          ((value<<40) & 0x00FF000000000000ull) |
+          ((value<<24) & 0x0000FF0000000000ull) |
+          ((value<<8) & 0x000000FF00000000ull) |
+          ((value>>8) & 0x00000000FF000000ull) |
+          ((value>>24) & 0x0000000000FF0000ull) |
+          ((value>>40) & 0x000000000000FF00ull) |
+          (value >> 56);
+  return value;
+}
+
+uint16_t swap_2bytes(uint16_t value)
+{
+  value = (value >> 8) | (value << 8);
+  return value;
+}
+
 int main()
 {
   ofstream file("test", ios::binary);
@@ -99,11 +118,16 @@ int main()
     for (int i = 0; i < num; ++i)
     {
       uint64_t buf [3] = {data[i].seq_num,data[i].topic_length,data[i].msg_length};
+
+      buf[0]=swap_8bytes(buf[0]);
+      buf[1]=swap_2bytes(buf[1]);
+      buf[2]=swap_2bytes(buf[2]);
+
       file.write((char *) &buf[0], sizeof(uint64_t));
       file.write((char *) &buf[1], sizeof(uint16_t));
       file.write((char *) &buf[2], sizeof(uint16_t));
 
-      //first message: 00 00 00 00 00 00 00 00 06 00 08 00 4D 74 6F 70 69 63 30 6D 65 73 73 61 67 65 30 0A
+      //first message: 00 00 00 00 00 00 00 00 00 06 00 08 4D 74 6F 70 69 63 30 6D 65 73 73 61 67 65 30 0A
       file << data[i].msg_type;
       file << data[i].topic;
       file << data[i].message << endl;
