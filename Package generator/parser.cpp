@@ -79,6 +79,17 @@ int main()
   unsigned char mtypebuff[mtypesize];
   fp = fopen("test", "rb");
 
+  // Move the pointer to the end of the file
+  if(fseek(fp, 0, SEEK_END))
+  {
+    // File seek error.
+    return -1;
+  }
+  long fileLength = 0;
+  fileLength = ftell(fp);
+  // Move the pointer back to the beginning of the file
+  rewind(fp);
+
   char c;
   c = fgetc(fp);
 
@@ -89,7 +100,7 @@ int main()
   else
   {
     pos = 0x00;
-    while (fscanf(fp, "%c", &c) != EOF)
+    while ((fscanf(fp, "%c", &c) != EOF) && (pos < fileLength))
     {
       fsetpos(fp, &pos);
       fread(seqnobuff, sizeof(char), seqnosize, fp);
