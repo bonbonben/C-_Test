@@ -18,6 +18,9 @@ class BigInt
 
     // debug mode for printing out debug information
     void Debug1(std::string str);
+  
+    // bitwise XOR assignment operator ^= overloading for BigInt
+    void operator ^=(const BigInt& bigint);
 
   protected:
 
