@@ -8,12 +8,14 @@
 using namespace std;
 
 void from_string_test();
+void bitwise_XOR_assignment_test();
 
 BigInt str0[500000];
 
 int main(const int argc, const char **argv)
 {
   from_string_test();
+  bitwise_XOR_assignment_test();
 
   return 0;
 }
@@ -98,6 +100,54 @@ void from_string_test()
 
   str1.from_string("-340282366920938463463374607431768211456");
   str1.Debug1("str1");
+
+  return;
+}
+
+void bitwise_XOR_assignment_test()
+{
+  cout << "\n//====================================//" << endl;
+  BigInt str2;
+  BigInt str3;
+  str2.from_string("170141183460469231731687303715884105727");
+  str3.from_string("0");
+  str2 ^= str3;
+  str2.Debug1("str2");
+
+  str2.from_string("170141183460469231731687303715884105727");
+  str3.from_string("-0");
+  str2 ^= str3;
+  str2.Debug1("str2");
+
+  str2.from_string("170141183460469231731687303715884105727");
+  str3.from_string("170141183460469231731687303715884105727");
+  str2 ^= str3;
+  str2.Debug1("str2");
+
+  str2.from_string("170141183460469231731687303715884105727");
+  str3.from_string("-170141183460469231731687303715884105728");
+  str2 ^= str3;
+  str2.Debug1("str2");
+
+  str2.from_string("-170141183460469231731687303715884105728");
+  str3.from_string("0");
+  str2 ^= str3;
+  str2.Debug1("str2");
+
+  str2.from_string("-170141183460469231731687303715884105728");
+  str3.from_string("-0");
+  str2 ^= str3;
+  str2.Debug1("str2");
+
+  str2.from_string("-170141183460469231731687303715884105728");
+  str3.from_string("170141183460469231731687303715884105727");
+  str2 ^= str3;
+  str2.Debug1("str2");
+
+  str2.from_string("-170141183460469231731687303715884105728");
+  str3.from_string("-170141183460469231731687303715884105728");
+  str2 ^= str3;
+  str2.Debug1("str2");
 
   return;
 }
