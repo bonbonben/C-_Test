@@ -132,3 +132,12 @@ void BigInt::from_string(const std::string& str_int)
 
   return;
 }
+
+// bitwise XOR assignment operator ^= overloading for BigInt
+void BigInt::operator ^=(const BigInt& bigint)
+{
+  this->elm[1] = this->elm[1] ^ bigint.elm[1];
+  this->elm[0] = this->elm[0] ^ bigint.elm[0];
+
+  return;
+}
