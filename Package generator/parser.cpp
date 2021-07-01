@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <filesystem>
 
 //----------------------------------------------------------
 // * there are 3 parts of a package for sending message.
@@ -72,23 +73,16 @@ int main()
   int tlengthsize = 2;
   int mlengthsize = 2;
   int mtypesize = 1;
+  int tlength;
+  int mlength;
 
-  unsigned char seqnobuff[seqnosize];
-  unsigned char tlengthbuff[tlengthsize];
-  unsigned char mlengthbuff[mlengthsize];
-  unsigned char mtypebuff[mtypesize];
   fp = fopen("test", "rb");
-
-  // Move the pointer to the end of the file
-  if(fseek(fp, 0, SEEK_END))
-  {
-    // File seek error.
-    return -1;
-  }
-  long fileLength = 0;
-  fileLength = ftell(fp);
-  // Move the pointer back to the beginning of the file
-  rewind(fp);
+  // 定位到檔案末尾.
+  fseek(fp,0L,SEEK_END);
+  // 得到檔案大小.
+  int filesize=ftell(fp);
+  unsigned char buff[filesize];
+  fseek(fp,0L,SEEK_SET);
 
   char c;
   c = fgetc(fp);
@@ -100,64 +94,57 @@ int main()
   else
   {
     pos = 0x00;
-    while ((fscanf(fp, "%c", &c) != EOF) && (pos < fileLength))
+    while (fscanf(fp, "%c", &c) != EOF)
     {
       fsetpos(fp, &pos);
-      fread(seqnobuff, sizeof(char), seqnosize, fp);
+      fread(buff, sizeof(char), seqnosize, fp);
       for (int i = 0; i < seqnosize; ++i)
       {
-        printf("%02x", seqnobuff[i]);
+        printf("%02x", buff[i]);
       }
       pos += seqnosize;
 
       fsetpos(fp, &pos);
-      fread(tlengthbuff, sizeof(char), tlengthsize, fp);
+      fread(buff, sizeof(char), tlengthsize, fp);
       for (int i = 0; i < tlengthsize; ++i)
       {
-        printf("%02x", tlengthbuff[i]);
+        printf("%02x", buff[i]);
+        tlength = buff[0] * 256 + buff[1] * 1;
       }
       pos += tlengthsize;
 
       fsetpos(fp, &pos);
-      fread(mlengthbuff, sizeof(char), mlengthsize, fp);
+      fread(buff, sizeof(char), mlengthsize, fp);
       for (int i = 0; i < mlengthsize; ++i)
       {
-        printf("%02x", mlengthbuff[i]);
+        printf("%02x", buff[i]);
+        mlength = buff[0] * 256 + buff[1] * 1;
       }
       pos += mlengthsize;
 
       fsetpos(fp, &pos);
-      fread(mtypebuff, sizeof(char), mtypesize, fp);
+      fread(buff, sizeof(char), mtypesize, fp);
       for (int i = 0; i < mtypesize; ++i)
       {
-        printf("%02x", mtypebuff[i]);
+        printf("%02x", buff[i]);
       }
       pos += mtypesize;
 
-      int tlength = tlengthbuff[0] * 256 + tlengthbuff[1] * 1;
-      unsigned char topic[tlength];
-
-      int mlength = mlengthbuff[0] * 256 + mlengthbuff[1] * 1;
-      unsigned char message[mlength];
-
       fsetpos(fp, &pos);
-      fread(topic, sizeof(char), tlength, fp);
+      fread(buff, sizeof(char), tlength, fp);
       for (int i = 0; i < tlength; ++i)
       {
-        printf("%c", topic[i]);
+        printf("%c", buff[i]);
       }
       pos += tlength;
 
       fsetpos(fp, &pos);
-      fread(message, sizeof(char), mlength, fp);
+      fread(buff, sizeof(char), mlength, fp);
       for (int i = 0; i < mlength; ++i)
       {
-        printf("%c", message[i]);
+        printf("%c", buff[i]);
       }
       pos += mlength;
-
-      pos += 1;
-      cout << endl;
     }
   }
 
