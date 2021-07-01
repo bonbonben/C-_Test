@@ -106,7 +106,7 @@ int main()
     cout << data[i].msg_length << " ";
     cout << data[i].msg_type << " ";
     cout << data[i].topic << " ";
-    cout << data[i].message << endl;
+    cout << data[i].message;
   }
 
   if (file.fail())
@@ -130,7 +130,7 @@ int main()
       //first message: 00 00 00 00 00 00 00 00 00 06 00 08 4D 74 6F 70 69 63 30 6D 65 73 73 61 67 65 30 0A
       file << data[i].msg_type;
       file << data[i].topic;
-      file << data[i].message << endl;
+      file << data[i].message;
     }
     file.close();
   }
