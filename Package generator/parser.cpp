@@ -77,12 +77,19 @@ int main()
   int mlength;
 
   fp = fopen("test", "rb");
-  // 定位到檔案末尾.
-  fseek(fp,0L,SEEK_END);
-  // 得到檔案大小.
-  int filesize=ftell(fp);
-  unsigned char buff[filesize];
-  fseek(fp,0L,SEEK_SET);
+
+  // Move the pointer to the end of the file
+  if(fseek(fp, 0, SEEK_END))
+  {
+    // File seek error.
+    return -1;
+  }
+  long fileLength = 0;
+  fileLength = ftell(fp);
+  // Move the pointer back to the beginning of the file
+  fseek(fp, 0, SEEK_SET);
+
+  unsigned char buff[fileLength];
 
   char c;
   c = fgetc(fp);
